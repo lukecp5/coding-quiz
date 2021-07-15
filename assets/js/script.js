@@ -109,6 +109,7 @@ function setHighscore(){
     console.log(storeableScore);
 }
 function displayHighscore(){
+    questionEl.textContent = "";
     console.log(retrieveHighscore());
     highscoreEl.setAttribute("display","contents");
     highscoreList.setAttribute("display","contents");
