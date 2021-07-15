@@ -73,9 +73,8 @@ function setQuestion() {
 
 function answerClick(event){
         if (currentQuestion > questions.length - 1) {
-            answerEl.removeEventListener("click", answerClick);
-            main.removeChild(".answerArea");
             endGame();
+            answerEl.removeEventListener("click", answerClick);
             return;
         }else{
         var element = event.target;
@@ -90,7 +89,6 @@ function answerClick(event){
         }
         console.log(currentQuestion);
         currentQuestion++;
-    
         setQuestion();
         }
 }
@@ -102,7 +100,7 @@ answerEl.addEventListener("click", answerClick)
 //Start button event listener
 startButton.addEventListener("click", function (event) {
     startGame();
-    startButton.setAttribute("display", "hidden");
+    startButton.setAttribute("style", "display: none;");
 })
 
 function setHighscore(){
@@ -112,15 +110,15 @@ function setHighscore(){
 }
 function displayHighscore(){
     questionEl.textContent = "";
+    var scoreHeader = document.createElement('h1');
+    var newScore = document.createElement('li');
+    var scoreLabel = document.createElement('h2');
+    var initials = document.createElement("input");
+    var inputLabel = document.createElement("h4");
     console.log(retrieveHighscore());
     highscoreEl.setAttribute("display","contents");
     highscoreList.setAttribute("display","contents");
     score = secondsLeft;
-        var scoreHeader = document.createElement('h1');
-        var newScore = document.createElement('li');
-        var scoreLabel = document.createElement('h2');
-        var initials = document.createElement("input");
-        var inputLabel = document.createElement("h4");
         scoreHeader.textContent = "Highscores";
         inputLabel.textContent = "Enter your initials here";
         scoreLabel.textContent = "Your Score:";
@@ -149,5 +147,3 @@ function endGame() {
     console.log(score);
 }
 storeHighscore();
-runTimer();
-setQuestion();
