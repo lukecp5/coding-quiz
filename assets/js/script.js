@@ -10,6 +10,7 @@ var dSpan = document.querySelector("#answer4");
 var highscoreEl = document.querySelector(".highscore-container");
 var highscoreList = document.querySelector(".scores");
 var highscoreTitle = document.querySelector(".highscore-title");
+var main = document.querySelector("body");
 var currentQuestion = 0;
 var currentAnswers = [];
 var h3s = document.querySelectorAll("h3");
@@ -70,16 +71,17 @@ function setQuestion() {
     }
 }
 
-function answerClick(){
+function answerClick(event){
         if (currentQuestion > questions.length - 1) {
-            answerEl.removeEventListener("click", answerClick());
+            answerEl.removeEventListener("click", answerClick);
+            main.removeChild(".answerArea");
             endGame();
             return;
         }else{
         var element = event.target;
         var correctAnswer = questions[currentQuestion].correctAnswer;
         var selectedAnswer = element.textContent;
-        if (element.matches(".answer")) {
+        if (element.matches("h3.answer")) {
             if (selectedAnswer == questions[currentQuestion].answers[correctAnswer]) {
                 console.log("correct!")
             } else {
@@ -132,6 +134,10 @@ function displayHighscore(){
         highscoreEl.appendChild(scoreLabel);
         highscoreEl.appendChild(newScore);
 }
+function storeHighscore(){
+    var newScore = ["lcp", "testScore"];
+    console.log(newScore);
+}
 function retrieveHighscore(){
     parsedScore = JSON.parse(localStorage.getItem("highscores"));
     return parsedScore;
@@ -142,5 +148,6 @@ function endGame() {
     displayHighscore();
     console.log(score);
 }
+storeHighscore();
 runTimer();
 setQuestion();
