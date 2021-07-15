@@ -1,0 +1,71 @@
+/* Styling for the entirety of the page and the header  */
+html{
+    font-size: 16px;
+}
+body{
+    width: 80vw;
+    margin: 0 auto;
+    margin-top: 12vh;
+}
+header{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 3vh;
+}
+#title{
+    font-size: 2rem;
+    display: inline;
+}
+.timerLabel{
+    display: inline;
+}
+#timer{
+    float:right;
+    display: inline;
+}
+
+/* Start of styling for the game area */
+
+.gameArea{
+    position: relative;
+    background: slategray;
+    height: 60vh;
+    width: 100%;
+    margin: 0 auto;
+}
+.questionArea{
+    text-align: center;
+    display: block;
+    padding: 1rem;
+}
+#questionSpan{
+    font-size: 1.4rem;
+}
+.answerArea{
+    height: 60%;
+    text-align:left;
+    width: 90%;
+    margin: 0 auto;
+    bottom: 10%;
+}
+h3{
+    margin: .2rem;
+    display: block;
+    font-size: 1rem;
+    width: 100%;
+    border: 3px solid black;
+    background: blue;
+    padding: 1rem .3rem;
+    color: white;
+}
+h3:hover{
+    border: 3px dotted black;
+    background: rgb(0, 0, 161);
+
+}
+.highscore-container{
+    /* display:none; */
+}
+h2{
+    font-size: 4vw;
+}
