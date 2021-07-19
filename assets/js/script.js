@@ -38,8 +38,8 @@ var questions = [
     }
 ]
 var highscores = {
-    lcp: "25",
-    ldp: "35"
+    lcp: 25,
+    ldp: 35
 }
 // The function that starts the timer when the user clicks the start button
 function runTimer() {
@@ -48,7 +48,7 @@ function runTimer() {
     var timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = secondsLeft
-        if (secondsLeft == 0 || currentQuestion > questions.length - 1) {
+        if (secondsLeft == 0 || currentQuestion > questions.length) {
             endGame();
             clearInterval(timerInterval);
         }
@@ -58,25 +58,34 @@ function runTimer() {
 function startGame() {
     runTimer();
     setQuestion();
+    currentQuestion = 0;
 }
 function setQuestion() {
-    if (currentQuestion > questions.length - 1) {
+    if (currentQuestion > questions.length) {
         return;
-    } else {
+    } else if(currentQuestion <= questions.length){
         questionEl.textContent = questions[currentQuestion].question;
         aSpan.textContent = questions[currentQuestion].answers["a"];
         bSpan.textContent = questions[currentQuestion].answers["b"];
         cSpan.textContent = questions[currentQuestion].answers["c"];
         dSpan.textContent = questions[currentQuestion].answers["d"];
+        currentQuestion++;
+    } else{
+        alert("fail");
     }
 }
 
-function answerClick(event){
-        if (currentQuestion > questions.length - 1) {
-            endGame();
-            answerEl.removeEventListener("click", answerClick);
-            return;
-        }else{
+// Event Listeners 
+
+// Event Listener for the answers when clicked
+answerEl.addEventListener("click", answerClick)
+
+function answerClick(event) {
+    if (currentQuestion > questions.length -1) {
+        endGame();
+        answerEl.removeEventListener("click", answerClick);
+        return;
+    } else {
         var element = event.target;
         var correctAnswer = questions[currentQuestion].correctAnswer;
         var selectedAnswer = element.textContent;
@@ -88,62 +97,59 @@ function answerClick(event){
             }
         }
         console.log(currentQuestion);
-        currentQuestion++;
+        // currentQuestion++;
+
         setQuestion();
-        }
+    }
 }
-// Event Listeners 
-
-// Event Listener for the answers when clicked
-answerEl.addEventListener("click", answerClick)
-
 //Start button event listener
 startButton.addEventListener("click", function (event) {
     startGame();
     startButton.setAttribute("style", "display: none;");
 })
 
-function setHighscore(){
+function setHighscore() {
     var storeableScore = JSON.stringify(highscores);
-    localStorage.setItem("highscores",storeableScore);
+    localStorage.setItem("highscores", storeableScore);
     console.log(storeableScore);
 }
-function displayHighscore(){
+function displayHighscore() {
     questionEl.textContent = "";
+    console.log(retrieveHighscore());
+    highscoreEl.setAttribute("display", "contents");
+    highscoreList.setAttribute("display", "contents");
+    // score = secondsLeft;
     var scoreHeader = document.createElement('h1');
     var newScore = document.createElement('li');
     var scoreLabel = document.createElement('h2');
     var initials = document.createElement("input");
     var inputLabel = document.createElement("h4");
-    console.log(retrieveHighscore());
-    highscoreEl.setAttribute("display","contents");
-    highscoreList.setAttribute("display","contents");
-    score = secondsLeft;
-        scoreHeader.textContent = "Highscores";
-        inputLabel.textContent = "Enter your initials here";
-        scoreLabel.textContent = "Your Score:";
-        newScore.textContent = score;
-        newScore.setAttribute("style","list-style:none")
-        highscoreEl.setAttribute("style","margin: 0 auto; text-align: center;")
-        initials.setAttribute("type","text");
-        highscoreTitle.append(scoreHeader);
-        highscoreEl.append(inputLabel)
-        highscoreEl.appendChild(initials);
-        highscoreEl.appendChild(scoreLabel);
-        highscoreEl.appendChild(newScore);
+    scoreHeader.textContent = "Highscores";
+    inputLabel.textContent = "Enter your initials here";
+    scoreLabel.textContent = "Your Score:";
+    newScore.textContent = timeEl.innerHTML;
+    newScore.setAttribute("style", "list-style:none")
+    highscoreEl.setAttribute("style", "margin: 0 auto; text-align: center;")
+    initials.setAttribute("type", "text");
+    highscoreTitle.append(scoreHeader);
+    highscoreEl.append(inputLabel);
+    highscoreEl.appendChild(initials);
+    highscoreEl.appendChild(scoreLabel);
+    highscoreEl.appendChild(newScore);
 }
-function storeHighscore(){
+function storeHighscore() {
     var newScore = ["lcp", "testScore"];
     console.log(newScore);
 }
-function retrieveHighscore(){
+function retrieveHighscore() {
     parsedScore = JSON.parse(localStorage.getItem("highscores"));
     return parsedScore;
 }
 function endGame() {
     answerEl.textContent = '';
-    score = secondsLeft;
+    // score = secondsLeft;
     displayHighscore();
-    console.log(score);
+    // console.log(score);
 }
 storeHighscore();
+
