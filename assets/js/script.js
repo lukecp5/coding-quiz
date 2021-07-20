@@ -238,38 +238,10 @@ function displayHighscore() {
         showHighscores();
     }
 }
-// function generateHighscores(){
-//         // ? Variable declaration for generated Elements in Highscores
-//         var scoreHeader = document.createElement('h1');
-//         var newScore = document.createElement('h1');
-//         var scoreLabel = document.createElement('h2');
-//         // ? Setting Text content of generated score frame
-//         scoreHeader.textContent = "Highscores";
-//         scoreHeader.setAttribute("class", "scoreHeader");
-//         scoreLabel.textContent = "Your Score:";
-//         newScore.textContent = timeEl.innerHTML;
-//         newScore.setAttribute("style", "font-size: 2rem; color: white;");
-//         newScore.setAttribute("class", "newScore");    
-//         highscoreEl.setAttribute("style", "margin: 2rem auto; text-align: center;")
-//         highscoreEl.setAttribute("class", "highscoreEL");
-//         scoreLabel.setAttribute("class", "scoreLabel");
-//         clearButton.setAttribute("style", "display: inline;");
-//         mainMenu.setAttribute("style", "display:inline;")
-//         // ? Appending score context to the highscore container    
-//         highscoreTitle.append(scoreHeader);
-//         highscoreEl.appendChild(scoreLabel);
-//         highscoreEl.appendChild(newScore);
-// }
 
 function hideHighscores(){
     highscoreEl.classList.remove("show");
     highscoreEl.classList.add("hidden");
-    // var scoreHeader = document.querySelectorAll("h1.scoreHeader");
-    // var newScore = document.querySelectorAll("h1.newScore");
-    // var scoreLabel = document.querySelectorAll("h2.scoreLabel");
-    // scoreHeader.textContent = '';
-    // newScore.textContent = '';
-    // scoreLabel.textContent = '';
     clearButton.setAttribute("style","display:none;")
     mainMenu.setAttribute("style","display:none;")
 }
