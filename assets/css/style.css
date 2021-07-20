@@ -16,7 +16,8 @@ html {
 body {
   width: 80vw;
   margin: 0 auto;
-  margin-top: 12vh;
+  margin-top: 6rem;
+  height: auto;
   background: var(--bdazzled-blue);
 }
 header {
@@ -73,6 +74,8 @@ header {
 
 .scores {
   font-size: 1.2rem;
+  list-style:decimal;
+  list-style-position: inside;
 }
 .scoreLabel {
   font-size: 1.3rem;
@@ -85,7 +88,7 @@ header {
   color: var(--gunmetal) !important;
 }
 .highscoreEL {
-  margin: 0.3rem auto;
+  margin: 15% auto;
   text-align: center;
 }
 h2 {
@@ -140,7 +143,7 @@ h3:hover {
 .highscore-container {
   /* display:none; */
   width: auto;
-  margin: 0.3rem auto !important;
+  margin: 8vh auto 5% auto !important;
   text-align: center;
   display: none;
 }
@@ -222,5 +225,31 @@ input[type="text"] {
   }
   #questionSpan {
     font-size: 1.8rem;
+  }
+}
+@media only screen and (min-width: 767px) {
+  header {
+    flex-direction: row;
+  }
+  .title {
+    font-size: 3.2rem;
+    margin: 0;
+  }
+  .scoreHeader {
+    font-size: 3.6rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+  }
+  .scores{
+    font-size: 2.4rem;
+    font-weight: 700;
+    list-style:decimal;
+    list-style-position: inside;
+  }
+  h3.answer {
+    font-size: 1.6rem;
+  }
+  #questionSpan {
+    font-size: 2rem;
   }
 }
