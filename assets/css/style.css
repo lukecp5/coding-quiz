@@ -104,10 +104,18 @@ h3:hover {
   /* display:none; */
   margin: 2rem;
   width: auto;
+  margin: 2rem auto; 
+  text-align: center; 
+  display: none;
 }
-.scoreHeader{
-  padding-bottom: 1rem;
-  
+.hidden{
+  display:none;
+}
+.show{
+  display:block;
+}
+.show-inline{
+  display: inline;
 }
 h2 {
   font-size: 2rem;
@@ -115,8 +123,12 @@ h2 {
 h1 {
   font-size: 2.4rem;
 }
+.scoreHeader{
+  padding-bottom: 1rem;
+  
+}
 .highscoreEntry{
-    width: 100%;
+  width: 100%;
     margin: 0 auto;
     text-align: center;
 }
