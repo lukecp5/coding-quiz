@@ -57,7 +57,7 @@ var questions = [
         correctAnswer: "d"
     }
 ]
-var highscores;
+var highscores = {};
 // The function that starts the timer when the user clicks the start button
 function runTimer() {
     secondsLeft = 75;
@@ -126,9 +126,6 @@ startButton.addEventListener("click", function (event) {
     startButton.setAttribute("style", "display: none;");
     answerEl.setAttribute("style", "display:block;")
 })
-function addHighscore() {
-    alert("Working");
-}
 // function setHighscore() {
 //     var storeableScore = JSON.stringify(highscores);
 //     localStorage.setItem("highscores", storeableScore);
@@ -160,33 +157,40 @@ function displayHighscore() {
 }
 // ? Handling of initials and score upon user entry
 
-submitButton.addEventListener("click", function(event){
+submitButton.addEventListener("click", function (event) {
     event.preventDefault();
     console.log(initialInput.value);
     storeHighscore(initialInput.value, timeEl.textContent);
-    
 })
 
 function storeHighscore(initials, score) {
-    var highscoreList = document.querySelector(".scores");
-    var highscores = JSON.parse(localStorage.getItem("highscores"));
-    // var initial = initialInput.value
+    var highscores = {};
+    if (localStorage["highscores"]) {
+        var highscores = JSON.parse(localStorage.getItem("highscores"));
+        // var initial = initialInput.value
+        highscores[initials] = score;
+        console.log(highscores);
+        localStorage.setItem("highscores", JSON.stringify(highscores));
+    } 
     highscores[initials] = score;
-    console.log(highscores);
     localStorage.setItem("highscores", JSON.stringify(highscores));
+
 }
 
 // ? Retrieval and display of highscores from local storage
 function retrieveHighscore() {
-    parsedScore = JSON.parse(localStorage.getItem("highscores"));
-    console.log(parsedScore);
-    var highscoreList = document.querySelector(".scores");
-    for (const [key, value] of Object.entries(parsedScore)) {
-        console.log(`${key}: ${value}`);
-        var scoreX = document.createElement('li');
-        scoreX.textContent = key + ": " + value;
-        highscoreList.append(scoreX);}
-    // return parsedScore;
+    if (localStorage["highscores"]) {
+        var parsedScore = JSON.parse(localStorage.getItem("highscores"));
+        console.log(parsedScore);
+        var highscoreList = document.querySelector(".scores");
+        for (const [key, value] of Object.entries(parsedScore)) {
+            console.log(`${key}: ${value}`);
+            var scoreX = document.createElement('li');
+            scoreX.textContent = key + ": " + value;
+            highscoreList.append(scoreX);
+        }
+        // return parsedScore;
+    }
 }
 function getInitials() {
     var hsForm = document.querySelector("#highscoreForm");
