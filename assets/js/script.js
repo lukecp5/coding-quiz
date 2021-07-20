@@ -6,6 +6,7 @@ var questionEl = document.querySelector("#questionSpan");
 var answerEl = document.querySelector(".answerArea");
 var highscoreEl = document.querySelector(".highscore-container");
 var highscoreList = document.querySelector(".scores");
+var oldHighscores = document.querySelectorAll(".scores > h3");
 var highscoreTitle = document.querySelector(".highscore-title");
 
 // Button Declarations
@@ -98,6 +99,7 @@ function runTimer() {
 
 function startGame() {
         setQuestion();
+        timeToSubtract = 0;
         runTimer();
         document.querySelector(".answerArea").addEventListener("click", answerClick);
     //currentQuestion = -1;
@@ -125,21 +127,36 @@ function setQuestion() {
 answerEl.addEventListener("click", answerClick)
 
 function answerClick(event) {
+    var element = event.target;
+    var correctAnswer = questions[currentQuestion].correctAnswer;
+    var selectedAnswer = element.textContent;
     if (currentQuestion >= questions.length - 1) {
-        endGame();
         answerEl.removeEventListener("click", answerClick);
-        // return;
-    } else {
-        var element = event.target;
-        var correctAnswer = questions[currentQuestion].correctAnswer;
-        var selectedAnswer = element.textContent;
-        if (element.matches("h3.answer")) {
+        if (element.matches("h3.answer") || element.matches("span")) {
             if (selectedAnswer == questions[currentQuestion].answers[correctAnswer]) {
                 console.log("correct!")
             } else {
                 timeToSubtract = timeToSubtract + 5;
                 console.log("Incorrect!")
             }
+        }else{
+            return;
+        }
+        endGame();
+        // return;
+    } else {
+        // var element = event.target;
+        // var correctAnswer = questions[currentQuestion].correctAnswer;
+        // var selectedAnswer = element.textContent;
+        if (element.matches("h3.answer") || element.matches("span")) {
+            if (selectedAnswer == questions[currentQuestion].answers[correctAnswer]) {
+                console.log("correct!")
+            } else {
+                timeToSubtract = timeToSubtract + 5;
+                console.log("Incorrect!")
+            }
+        }else{
+            return;
         }
         console.log(currentQuestion);
         // currentQuestion++;
@@ -185,10 +202,10 @@ function hideHighscoreInput(){
 }
 function showHighscores(){
     newScore.setAttribute("style", "font-size: 2rem; color: white;");
-    newScore.className += " show";
+    newScore.className += " show ";
     highscoreEl.className += " highscore-container show highscoreEl";
     // highscoreEl.classList.add("show highscoreEL");
-    scoreLabel.className += " show";
+    scoreLabel.className += " show ";
     clearButton.classList.add("show-inline");
     mainMenu.classList.add("show-inline");
 }
@@ -287,6 +304,7 @@ submitButton.addEventListener("click", function (event) {
 clearButton.addEventListener("click", function(){
     localStorage.clear("highscores");
     retrieveHighscore();
+    removeAllChildNodes(highscoreList);
     // displayHighscore();
 })
 
@@ -299,6 +317,12 @@ mainMenu.addEventListener("click", function(){
     hideMenuButton();
     hideClearButton();
 })
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 
 function storeHighscore(initials, score) {
     var highscores = {};
@@ -343,6 +367,8 @@ function endGame() {
     clearInterval(timerInterval);
     gameOver = true;
     questionEl.textContent = '';
+    timeEl.textContent = secondsLeft - timeToSubtract;
+    newScore.textContent = timeEl.textContent;
     // answerEl.children().textContent = '';
     document.querySelector(".answerArea").removeEventListener("click", answerClick);
     // score = secondsLeft;
