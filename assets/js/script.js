@@ -1,19 +1,34 @@
-// Variable declarations for the elements of the page
+// Query selectors for the elements of the page
+var main = document.querySelector("body");
+var gameArea = document.querySelector(".gameArea")
 var timeEl = document.querySelector("#timeCounter");
 var questionEl = document.querySelector("#questionSpan");
 var answerEl = document.querySelector(".answerArea");
+var highscoreEl = document.querySelector(".highscore-container");
+var highscoreList = document.querySelector(".scores");
+var highscoreTitle = document.querySelector(".highscore-title");
+
+// Button Declarations
 var startButton = document.querySelector("#startButton");
+var clearButton = document.querySelector("#clearButton");
+var submitButton = document.querySelector("#submitButton");
+var mainMenu = document.querySelector("#mainMenu");
+
+// Answer Span Declarations
 var aSpan = document.querySelector("#answer1");
 var bSpan = document.querySelector("#answer2");
 var cSpan = document.querySelector("#answer3");
 var dSpan = document.querySelector("#answer4");
 
-var main = document.querySelector("body");
-var currentQuestion = 0;
+var gameOver = false;
+var currentQuestion = -1;
 var currentAnswers = [];
 var h3s = document.querySelectorAll("h3");
-var submitButton = document.querySelector("#submitButton");
+var viewHighscores = document.querySelector("#viewHighscores");
 var initialInput = document.querySelector("#highscoreName");
+var timerInterval;
+var timeToSubtract = 0;
+var highscoresGenerated = false;
 // The array of objects that holds all of the questions and answers
 var questions = [
     {
@@ -62,12 +77,13 @@ var highscores = {};
 function runTimer() {
     secondsLeft = 75;
     var score = secondsLeft;
-    var timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
         secondsLeft--;
-        timeEl.textContent = secondsLeft
-        if (secondsLeft == 0 || currentQuestion > questions.length) {
-            // endGame();
+        timeEl.textContent = secondsLeft - timeToSubtract;
+        // timeToSubtract = 0;
+        if(secondsLeft - timeToSubtract <= 0){
             clearInterval(timerInterval);
+            endGame();
         }
         return secondsLeft;
     }, 1000)
@@ -75,7 +91,8 @@ function runTimer() {
 
 function startGame() {
     setQuestion();
-    currentQuestion = 0;
+    //currentQuestion = -1;
+
     runTimer();
 }
 function setQuestion() {
@@ -83,13 +100,15 @@ function setQuestion() {
         clearInterval(timerInterval);
         endingScore = timerInterval.secondsLeft;
         return;
-    } else if (currentQuestion <= questions.length) {
+    } else if (currentQuestion < questions.length -1 ) {
+        currentQuestion++;
         questionEl.textContent = questions[currentQuestion].question;
         aSpan.textContent = questions[currentQuestion].answers["a"];
         bSpan.textContent = questions[currentQuestion].answers["b"];
         cSpan.textContent = questions[currentQuestion].answers["c"];
         dSpan.textContent = questions[currentQuestion].answers["d"];
-        currentQuestion++;
+        console.log("The correct answer is: " + questions[currentQuestion].correctAnswer);
+
     }
 }
 
@@ -99,7 +118,7 @@ function setQuestion() {
 answerEl.addEventListener("click", answerClick)
 
 function answerClick(event) {
-    if (currentQuestion > questions.length - 1) {
+    if (currentQuestion >= questions.length - 1) {
         endGame();
         answerEl.removeEventListener("click", answerClick);
         // return;
@@ -111,6 +130,7 @@ function answerClick(event) {
             if (selectedAnswer == questions[currentQuestion].answers[correctAnswer]) {
                 console.log("correct!")
             } else {
+                timeToSubtract = timeToSubtract + 5;
                 console.log("Incorrect!")
             }
         }
@@ -121,20 +141,76 @@ function answerClick(event) {
     }
 }
 //Start button event listener
-startButton.addEventListener("click", function (event) {
-    startGame();
+
+
+function hideStart(){
     startButton.setAttribute("style", "display: none;");
-    answerEl.setAttribute("style", "display:block;")
-})
-// function setHighscore() {
-//     var storeableScore = JSON.stringify(highscores);
-//     localStorage.setItem("highscores", storeableScore);
-//     console.log(storeableScore);
+}
+function hideHighscoreButton(){
+    viewHighscores.setAttribute("style","display:none");
+}
+function hideMenuButton(){
+    mainMenu.setAttribute("style","display:none");
+}
+function hideClearButton(){
+    clearButton.setAttribute("style","display:none");
+}
+function hideSubmitButton(){
+    submitButton.setAttribute("style","display:none;");
+}
+function showStart(){
+    startButton.setAttribute("style", "display: block;");
+}
+function showHighscoreButton(){
+    viewHighscores.setAttribute("style","display:block;");
+}
+function showMenuButton(){
+    mainMenu.setAttribute("style","display:inline;");
+}
+function showClearButton(){
+    clearButton.setAttribute("style","display:inline;");
+}
+function showSubmitButton(){
+    submitButton.setAttribute("style","display:block;");
+}
+// function showHighscores(){
+//     if(highscoresGenerated === false){
+//             // ? Variable declaration for generated Elements in Highscores
+//     var scoreHeader = document.createElement('h1');
+//     var newScore = document.createElement('h1');
+//     var scoreLabel = document.createElement('h2');
+//     // ? Setting Text content of generated score frame
+//     scoreHeader.textContent = "Highscores";
+//     scoreHeader.setAttribute("class", "scoreHeader");
+//     scoreLabel.textContent = "Your Score:";
+//     newScore.textContent = timeEl.innerHTML;
+//     window.newScore = timeEl.innerHTML;
+//     newScore.setAttribute("style", "font-size: 2rem; color: white;");
+//     newScore.setAttribute("class", "newScore");    
+//     highscoreEl.setAttribute("style", "margin: 2rem auto; text-align: center;")
+//     highscoreEl.setAttribute("class", "highscoreEL");
+//     scoreLabel.setAttribute("class", "scoreLabel");
+//     clearButton.setAttribute("style", "display: inline;");
+//     mainMenu.setAttribute("style", "display:inline;");
+//     // ? Appending score context to the highscore container    
+//     highscoreTitle.append(scoreHeader);
+//     highscoreEl.appendChild(scoreLabel);
+//     highscoreEl.appendChild(newScore);
+//     highscoresGenerated = true;
+//     }else{
+//     highscoreEl.setAttribute("style", "display: block;");
+//     newScore.setAttribute("style", "font-size: 2rem; color: white;");
+//     newScore.setAttribute("class", "newScore");    
+//     highscoreEl.setAttribute("style", "margin: 2rem auto; text-align: center;")
+//     highscoreEl.setAttribute("class", "highscoreEL");
+//     scoreLabel.setAttribute("class", "scoreLabel");
+//     clearButton.setAttribute("style", "display: inline;");
+//     mainMenu.setAttribute("style", "display:inline;");
+    
+//     }
 // }
+
 function displayHighscore() {
-    var highscoreEl = document.querySelector(".highscore-container");
-    var highscoreList = document.querySelector(".scores");
-    var highscoreTitle = document.querySelector(".highscore-title");
     questionEl.textContent = "";
     console.log(retrieveHighscore());
     highscoreEl.setAttribute("display", "contents");
@@ -148,19 +224,87 @@ function displayHighscore() {
     scoreHeader.setAttribute("class", "scoreHeader");
     scoreLabel.textContent = "Your Score:";
     newScore.textContent = timeEl.innerHTML;
-    newScore.setAttribute("style", "font-size: 2rem; color: white;")
+    window.newScore = timeEl.innerHTML;
+    newScore.setAttribute("style", "font-size: 2rem; color: white;");
+    newScore.setAttribute("class", "newScore");    
     highscoreEl.setAttribute("style", "margin: 2rem auto; text-align: center;")
+    highscoreEl.setAttribute("class", "highscoreEL");
+    scoreLabel.setAttribute("class", "scoreLabel");
+    clearButton.setAttribute("style", "display: inline;");
+    mainMenu.setAttribute("style", "display:inline;")
     // ? Appending score context to the highscore container    
     highscoreTitle.append(scoreHeader);
     highscoreEl.appendChild(scoreLabel);
     highscoreEl.appendChild(newScore);
 }
-// ? Handling of initials and score upon user entry
+function generateHighscores(){
+        // ? Variable declaration for generated Elements in Highscores
+        var scoreHeader = document.createElement('h1');
+        var newScore = document.createElement('h1');
+        var scoreLabel = document.createElement('h2');
+        // ? Setting Text content of generated score frame
+        scoreHeader.textContent = "Highscores";
+        scoreHeader.setAttribute("class", "scoreHeader");
+        scoreLabel.textContent = "Your Score:";
+        newScore.textContent = timeEl.innerHTML;
+        window.newScore = timeEl.innerHTML;
+        newScore.setAttribute("style", "font-size: 2rem; color: white;");
+        newScore.setAttribute("class", "newScore");    
+        highscoreEl.setAttribute("style", "margin: 2rem auto; text-align: center;")
+        highscoreEl.setAttribute("class", "highscoreEL");
+        scoreLabel.setAttribute("class", "scoreLabel");
+        clearButton.setAttribute("style", "display: inline;");
+        mainMenu.setAttribute("style", "display:inline;")
+        // ? Appending score context to the highscore container    
+        highscoreTitle.append(scoreHeader);
+        highscoreEl.appendChild(scoreLabel);
+        highscoreEl.appendChild(newScore);
+}
+
+function hideHighscores(){
+    highscoreEl.setAttribute("style", "display: none");
+    // var scoreHeader = document.querySelectorAll("h1.scoreHeader");
+    // var newScore = document.querySelectorAll("h1.newScore");
+    // var scoreLabel = document.querySelectorAll("h2.scoreLabel");
+    // scoreHeader.textContent = '';
+    // newScore.textContent = '';
+    // scoreLabel.textContent = '';
+    clearButton.setAttribute("style","display:none;")
+    mainMenu.setAttribute("style","display:none;")
+}
+// ? Submit, Clear, and Main Menu Event handlers
+
+startButton.addEventListener("click", function (event) {
+    startGame();
+    hideStart();
+    answerEl.setAttribute("style", "display:block;")
+    hideHighscoreButton();
+})
+
+viewHighscores.addEventListener("click", function(){
+    displayHighscore();
+    hideStart();
+    hideHighscoreButton();
+})
 
 submitButton.addEventListener("click", function (event) {
     event.preventDefault();
     console.log(initialInput.value);
-    storeHighscore(initialInput.value, timeEl.textContent);
+    storeHighscore(initialInput.value, newScore);
+    hideSubmitButton();
+})
+
+clearButton.addEventListener("click", function(){
+    localStorage.clear("highscores");
+    retrieveHighscore();
+})
+
+mainMenu.addEventListener("click", function(){
+    startButton.setAttribute("style","display:block;");
+    showHighscoreButton();
+    hideHighscores();
+    hideMenuButton();
+    hideClearButton();
 })
 
 function storeHighscore(initials, score) {
@@ -198,6 +342,7 @@ function getInitials() {
 }
 
 function endGame() {
+    clearInterval(timerInterval);
     gameOver = true;
     answerEl.textContent = '';
     document.querySelector(".answerArea").removeEventListener("click", answerClick);

@@ -1,16 +1,29 @@
 /* Styling for the entirety of the page and the header  */
+/* CSS HEX */
+:root{
+--bdazzled-blue: #3d5a80ff;
+--pale-cerulean: #98c1d9ff;
+--light-cyan: #e0fbfcff;
+--burnt-sienna: #ee6c4dff;
+--gunmetal: #293241ff;
+}
+*{
+}
 html {
   font-size: 16px;
+  color: var(--light-cyan);
 }
 body {
   width: 80vw;
   margin: 0 auto;
   margin-top: 12vh;
+  background: var(--bdazzled-blue);
 }
 header {
   display: flex;
   justify-content: space-around;
   margin-bottom: 3vh;
+  color: var(--burnt-sienna);
 }
 #title {
   font-size: 2rem;
@@ -22,42 +35,34 @@ header {
 #timer {
   float: right;
   display: inline;
+  font-size: 2rem;
 }
 /* Start of styling for the game area */
-#startButton, #submitButton, #clearButton {
-  background-color: #23b83c;
+#startButton, #submitButton, #clearButton, #viewHighscores, #mainMenu {
+    background-color: var(--bdazzled-blue);
   border: 2px solid #020353;
-  color: whitesmoke;
+  color: var(--light-cyan);
   padding: 1em 1.5em;
   text-align: center;
   text-decoration: none;
   font-size: 1em;
   display: block;
-  width: 22%;
-  border-radius: 5px;
+  width: auto;
+  border-radius: 3px;
   box-shadow: 3px 3px 8px 0 #000; /* h-offset v-offset blur spread color */
-  margin: 2rem auto;}
+  margin: .8rem auto;}
   #startButton{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.highscoreEntry{
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
+.scores{
+  font-size: 1.5rem;
 }
-#highscoreForm{
-    display:none;
-    margin: 0 auto;
-    max-width: auto;
-    text-align: center;
-}
-
 .gameArea {
   position: relative;
-  background: slategray;
+  background: var(--burnt-sienna);
   height: 60vh;
   width: 100%;
   margin: 0 auto;
@@ -78,6 +83,9 @@ header {
   bottom: 10%;
   display: none;
 }
+.answer{
+  background: var(--bdazzled-blue);
+}
 h3 {
   margin: 0.2rem;
   display: block;
@@ -90,19 +98,41 @@ h3 {
 }
 h3:hover {
   border: 3px dotted black;
-  background: rgb(0, 0, 161);
+  background: var(--gunmetal);
 }
 .highscore-container {
   /* display:none; */
   margin: 2rem;
+  width: auto;
 }
 .scoreHeader{
-    padding-bottom: 1rem;
-
+  padding-bottom: 1rem;
+  
 }
 h2 {
-  font-size: 100%;
+  font-size: 2rem;
 }
 h1 {
   font-size: 2.4rem;
+}
+.highscoreEntry{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+#highscoreForm{
+    display:none;
+    margin: 0 auto;
+    max-width: auto;
+    text-align: center;
+}
+#clearButton{
+  display: none;
+}
+#viewHighscores{
+  display:block;
+  margin: 1rem auto;
+}
+#mainMenu{
+  display: none;
 }
