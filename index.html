@@ -21,15 +21,24 @@
         <section class="highscore-container">
             <h2 class="highscore-title"></h2>
             <ul class="scores">
-                
             </ul>
         </section>
+            <section class="highscoreEntry">
+            <form id="highscoreForm">
+                <label for="highscoreName">Enter your initials to save your highscore:</label><br>
+                <input type="text" id="highscoreName" name="highscoreName" value="Enter Initials Here">
+                <input type="submit" id="submitButton">
+                <input type="button" id="clearButton" value="Clear">
+            </form>
+            </section>
         <section class="answerArea">
             <h3 class="answer"><span id="answer1"></span></h3>
             <h3 class="answer"><span id="answer2"></span></h3>
             <h3 class="answer"><span id="answer3"></span></h3>
             <h3 class="answer"><span id="answer4"></span></h3>
-            <button id="startButton">Start</button>
+    </section>
+    <section class="startSection">            
+        <button id="startButton">Start</button>
     </section>
     <script src="assets/js/script.js"></script>    
 </body>

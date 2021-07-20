@@ -1,73 +1,108 @@
 /* Styling for the entirety of the page and the header  */
-html{
-    font-size: 16px;
+html {
+  font-size: 16px;
 }
-body{
-    width: 80vw;
-    margin: 0 auto;
-    margin-top: 12vh;
+body {
+  width: 80vw;
+  margin: 0 auto;
+  margin-top: 12vh;
 }
-header{
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 3vh;
+header {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 3vh;
 }
-#title{
-    font-size: 2rem;
-    display: inline;
+#title {
+  font-size: 2rem;
+  display: inline;
 }
-.timerLabel{
-    display: inline;
+.timerLabel {
+  display: inline;
 }
-#timer{
-    float:right;
-    display: inline;
+#timer {
+  float: right;
+  display: inline;
 }
 /* Start of styling for the game area */
-
-.gameArea{
-    position: relative;
-    background: slategray;
-    height: 60vh;
+#startButton, #submitButton, #clearButton {
+  background-color: #23b83c;
+  border: 2px solid #020353;
+  color: whitesmoke;
+  padding: 1em 1.5em;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+  display: block;
+  width: 22%;
+  border-radius: 5px;
+  box-shadow: 3px 3px 8px 0 #000; /* h-offset v-offset blur spread color */
+  margin: 2rem auto;}
+  #startButton{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.highscoreEntry{
     width: 100%;
     margin: 0 auto;
-}
-.questionArea{
     text-align: center;
-    display: block;
-    padding: 1rem;
 }
-#questionSpan{
-    font-size: 1.4rem;
-}
-.answerArea{
-    height: 60%;
-    text-align:left;
-    width: 90%;
+#highscoreForm{
+    display:none;
     margin: 0 auto;
-    bottom: 10%;
+    max-width: auto;
+    text-align: center;
 }
-h3{
-    margin: .2rem;
-    display: block;
-    font-size: 1rem;
-    width: 100%;
-    border: 3px solid black;
-    background: blue;
-    padding: 1rem .3rem;
-    color: white;
+
+.gameArea {
+  position: relative;
+  background: slategray;
+  height: 60vh;
+  width: 100%;
+  margin: 0 auto;
 }
-h3:hover{
-    border: 3px dotted black;
-    background: rgb(0, 0, 161);
+.questionArea {
+  text-align: center;
+  display: block;
+  padding: 1rem;
+}
+#questionSpan {
+  font-size: 1.4rem;
+}
+.answerArea {
+  height: 60%;
+  text-align: left;
+  width: 90%;
+  margin: 0 auto;
+  bottom: 10%;
+  display: none;
+}
+h3 {
+  margin: 0.2rem;
+  display: block;
+  font-size: 1rem;
+  width: 100%;
+  border: 3px solid black;
+  background: blue;
+  padding: 1rem 0.3rem;
+  color: white;
+}
+h3:hover {
+  border: 3px dotted black;
+  background: rgb(0, 0, 161);
+}
+.highscore-container {
+  /* display:none; */
+  margin: 2rem;
+}
+.scoreHeader{
+    padding-bottom: 1rem;
 
 }
-.highscore-container{
-    /* display:none; */
+h2 {
+  font-size: 100%;
 }
-h2{
-    font-size: 100%;
-}
-h1{
-    font-size: 2.4rem;
+h1 {
+  font-size: 2.4rem;
 }
