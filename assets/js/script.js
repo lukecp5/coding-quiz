@@ -78,7 +78,47 @@ var questions = [
             d: "Media Queries in CSS"
         },
         correctAnswer: "d"
-    }
+    },
+    {
+        question: "Inside which HTML element do we put the JavaScript?",
+        answers: {
+            a: "<scripting>",
+            b: "<script>",
+            c: "<javascript>",
+            d: "<js>"
+        },
+        correctAnswer: "b"
+    },
+    {
+        question: "What is the correct HTML element for inserting a line break?",
+        answers: {
+            a: "<br>",
+            b: "<break>",
+            c: "<lib>",
+            d: "<breakline>"
+        },
+        correctAnswer: "a"
+    },
+    {
+        question: "What does CSS stand for?",
+        answers: {
+            a: "Colorful Style Sheets",
+            b: "Cascading Style Sheets",
+            c: "Computer Style Sheets",
+            d: "Creative Style Sheets"
+        },
+        correctAnswer: "b"
+    },
+    {
+        question: "Which HTML attribute is used to define inline styles?",
+        answers: {
+            a: "styles",
+            b: "font",
+            c: "class",
+            d: "style"
+        },
+        correctAnswer: "d"
+    }    
 ]
 var highscores = {};
 // The function that starts the timer when the user clicks the start button

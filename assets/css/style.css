@@ -16,7 +16,7 @@ html {
 body {
   width: 80vw;
   margin: 0 auto;
-  margin-top: 6rem;
+  /* margin-top: 6rem; */
   height: auto;
   background: var(--bdazzled-blue);
 }
@@ -26,7 +26,7 @@ header {
   justify-content: space-around;
   align-items: center;
   margin-bottom: 3vh;
-  margin-top: 1.4vh;
+  margin-top: 4.4vh;
   color: var(--light-cyan);
 }
 .title {
@@ -54,7 +54,7 @@ header {
   background-color: var(--bdazzled-blue);
   border: 2px solid #020353;
   color: var(--light-cyan);
-  padding: 0.6em 0.9em;
+  padding: 0.4em 1.4em;
   text-align: center;
   text-decoration: none;
   font-size: 1em;
@@ -69,7 +69,12 @@ header {
   top: 50%;
   left: 50%;
   font-size: 2rem;
+  width: 80%;
   transform: translate(-50%, -50%);
+
+}
+#startButton:hover, #startButton:active, #viewHighscores:hover,#viewHighscores:active{
+  padding: .5em 1.5em;
 }
 
 .scores {
@@ -88,7 +93,7 @@ header {
   color: var(--gunmetal) !important;
 }
 .highscoreEL {
-  margin: 10% auto;
+  margin: .2rem auto;
   text-align: center;
 }
 h2 {
@@ -99,6 +104,7 @@ h1 {
 }
 .gameArea {
   position: relative;
+  display: inline-block;
   background: var(--light-cyan);
   min-height: 50vh;
   padding-bottom: 2rem;
@@ -143,7 +149,7 @@ h3:hover {
 .highscore-container {
   /* display:none; */
   width: auto;
-  margin: 8vh auto 5% auto !important;
+  margin: 0 auto 5% auto !important;
   text-align: center;
   display: none;
 }
