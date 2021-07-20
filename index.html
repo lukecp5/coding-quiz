@@ -19,7 +19,6 @@
     <section class="gameArea">
         <section class="questionArea">
             <span id="questionSpan">Welcome to the coding quiz!</span>
-            <button id="viewHighscores">View Highscores</button>
         </section>
         <section class="highscore-container">
             <h2 class="highscore-title"></h2>
@@ -28,14 +27,15 @@
         </section>
             <section class="highscoreEntry">
             <form id="highscoreForm">
-                <label for="highscoreName">Enter your initials to save your highscore:</label><br>
-                <input type="text" id="highscoreName" name="highscoreName" value="Enter Initials Here">
+                <label for="highscoreName">Enter initials:</label><br>
+                <input type="text" id="highscoreName" name="highscoreName" value="AAA">
                 <input type="submit" id="submitButton">
                 <!-- <input type="button" id="clearButton" value="Clear"> -->
             </form>
             <button id="clearButton">Clear</button>
             <button id="mainMenu">Main Menu</button>
             </section>
+            
         <section class="answerArea">
             <h3 class="answer"><span id="answer1"></span></h3>
             <h3 class="answer"><span id="answer2"></span></h3>
@@ -45,6 +45,7 @@
     <section class="startSection">            
         <button id="startButton">Start</button>
     </section>
+    <button id="viewHighscores">View Highscores</button>
     <script src="assets/js/script.js"></script>    
 </body>
 </html>

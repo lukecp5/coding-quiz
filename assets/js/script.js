@@ -223,9 +223,8 @@ function displayHighscore() {
     scoreLabel.textContent = "Your Score:";
     newScore.textContent = timeEl.innerHTML;
     // window.newScore = timeEl.innerHTML;
-    newScore.setAttribute("style", "font-size: 2rem; color: white;");
     newScore.setAttribute("class", "newScore");    
-    highscoreEl.setAttribute("style", "margin: 2rem auto; text-align: center;")
+    highscoreEl.setAttribute("style", "")
     highscoreEl.setAttribute("class", "highscoreEL");
     scoreLabel.setAttribute("class", "scoreLabel");
     clearButton.setAttribute("style", "display: inline;");
