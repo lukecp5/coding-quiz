@@ -19,9 +19,9 @@ This is a quiz developed to help you test your coding skills. It is a timed quiz
 The application is live on GitHub: [https://lukecp5.github.io/coding-quiz/](https://lukecp5.github.io/coding-quiz/)
 
 ## Contact Me
-LinkedIn: [@luke-poirrier](https://www.linkedin.com/in/luke-poirrier)
-Email: [Luke@LukePoirrier.com](mailto:Luke@LukePoirrier.com)
-Portfolio: [LukePoirrier.com](http://lukepoirrier.com)
+LinkedIn: [@luke-poirrier](https://www.linkedin.com/in/luke-poirrier)  
+Email: [Luke@LukePoirrier.com](mailto:Luke@LukePoirrier.com)  
+Portfolio: [LukePoirrier.com](http://lukepoirrier.com)  
 
 ### License
 This application is licensed under the MIT License, you can find the full license information [here](https://github.com/lukecp5/coding-quiz/blob/main/LICENSE.txt)
