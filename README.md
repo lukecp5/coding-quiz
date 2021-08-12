@@ -19,4 +19,4 @@ This is a quiz developed to help you test your coding skills. It is a timed quiz
 The application is live on GitHub: [https://lukecp5.github.io/coding-quiz/](https://lukecp5.github.io/coding-quiz/)
 
 ### License
-This application is licensed under the MIT License, you can find the full license information [here](https://github.com/lukecp5/coding-quiz/LICENSE.txt)
+This application is licensed under the MIT License, you can find the full license information [here](https://github.com/lukecp5/coding-quiz/blob/main/LICENSE.txt)
